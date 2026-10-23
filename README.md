@@ -4,15 +4,11 @@
 
 **Give your AI assistant a grounded workflow for .NET development.**
 
-Map ownership. Build focused features. Verify real behavior.
-Across GitHub Copilot, Claude Code, Codex, Cursor, and OpenCode.
-
 [![Validate toolkit](https://github.com/meysamhadeli/dotnet-ai-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/meysamhadeli/dotnet-ai-toolkit/actions/workflows/ci.yml)
 [![Documentation](https://img.shields.io/badge/docs-Nextra-7c3aed)](https://meysamhadeli.github.io/dotnet-ai-toolkit/)
 [![Node.js](https://img.shields.io/badge/Node.js-22%2B-43853d)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**14 workflows · 4 advisory roles · 5 project shapes · 14 reusable concepts**
 
 [Documentation](https://meysamhadeli.github.io/dotnet-ai-toolkit/) · [Quick start](#quick-start) · [Workflows](#choose-a-workflow) · [Templates](#choose-your-project-shape) · [Contributing](CONTRIBUTING.md)
 
