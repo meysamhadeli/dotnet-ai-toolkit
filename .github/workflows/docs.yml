@@ -64,7 +64,7 @@ jobs:
       - run: npm --prefix website ci
       - run: npm run docs:build
       - run: npm run docs:check
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
           path: website/out
