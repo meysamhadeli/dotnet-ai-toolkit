@@ -1,0 +1,36 @@
+name: Draft release notes
+
+on:
+  workflow_run:
+    workflows: [Validate toolkit]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-drafter-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref_name == github.event.repository.default_branch) ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       github.event.workflow_run.head_branch == github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Update unpublished release draft
+        uses: release-drafter/release-drafter@v7.10.0
+        with:
+          config-name: release-drafter.yml
+          commitish: ${{ github.event.repository.default_branch }}
+          publish: false
+          token: ${{ secrets.GITHUB_TOKEN }}

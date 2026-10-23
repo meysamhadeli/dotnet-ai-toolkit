@@ -1,0 +1,86 @@
+name: Deploy documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'skills/**'
+      - 'agents/**'
+      - 'templates/**'
+      - 'knowledge/**'
+      - 'docs/**'
+      - 'mcp/**'
+      - 'plugins/**'
+      - 'evals/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'toolkit.json'
+      - 'package.json'
+      - '*.md'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'website/**'
+      - 'skills/**'
+      - 'agents/**'
+      - 'templates/**'
+      - 'knowledge/**'
+      - 'docs/**'
+      - 'mcp/**'
+      - 'plugins/**'
+      - 'evals/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'toolkit.json'
+      - 'package.json'
+      - '*.md'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - run: npm run check
+      - run: npm --prefix website ci
+      - run: npm run docs:build
+      - run: npm run docs:check
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          path: website/out
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy static documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

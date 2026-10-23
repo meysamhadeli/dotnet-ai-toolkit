@@ -1,0 +1,74 @@
+# Get started
+
+Choose skills for your assistant with one command. Use the full toolkit only when you also want host instructions and specialist roles.
+
+## Recommended: Vercel skills
+
+Requires **Node.js 22.20 or later**. Run this inside your .NET application's repository:
+
+```bash
+npx skills add https://meysamhadeli.github.io/dotnet-ai-toolkit/skills.tar.gz --copy
+```
+
+Choose your workflows and coding agents in the prompts. No toolkit clone, global install, or .NET SDK required. `npx` downloads and executes Vercel's `skills` CLI; review its prompts before accepting.
+
+Each packaged workflow includes its own project templates and shared knowledge under skill-relative `references/`. You do not need a separate `.ai-toolkit/` folder. `--copy` avoids symlink requirements.
+
+**The download becomes available when the documentation deployment is published.** If it has not been deployed yet, use the full local installer below. Do not install the repository's canonical `skills/` directly with Vercel: those sources use the full toolkit's resource paths.
+
+### Want only one skill?
+
+```bash
+npx skills add https://meysamhadeli.github.io/dotnet-ai-toolkit/skills.tar.gz --skill dotnet-api --agent github-copilot --copy
+```
+
+Other Vercel agent names: `claude-code`, `codex`, `cursor`, and `opencode`. Use `npx skills list` to inspect CLI-owned installations.
+
+### Know the boundary
+
+This installs **skills and their reference material**, not host instruction files or specialist agents. Vercel manages its own update and replacement behavior; it does not inherit the full installer's no-overwrite guarantee. Review existing skills before accepting changes.
+
+Use one installation method per skill and project. Avoid duplicate discovery from mixing full and skills-only installs.
+
+## Optional: full toolkit setup
+
+Choose this when you want all resources, host instructions, installation receipts, and read-only native roles on supported hosts. Requires Node.js 22+; no npm dependency installation needed.
+
+```bash
+git clone https://github.com/meysamhadeli/dotnet-ai-toolkit.git
+cd dotnet-ai-toolkit
+node scripts/install.mjs --target "../my-dotnet-app" --assistant copilot --dry-run
+node scripts/install.mjs --target "../my-dotnet-app" --assistant copilot
+```
+
+The target must already exist and be separate from this checkout. Choose `copilot`, `claude`, `codex`, `cursor`, or `opencode`. These identifiers belong to the full installer; Vercel uses `github-copilot` and `claude-code` instead.
+
+Review the dry-run first. Different existing files, directory collisions, and symlinks stop installation; identical files are reused. There is no overwrite flag.
+
+[Adoption and host destinations](/guides/adoption/) covers receipts, manual merging, updates, and role support.
+
+## Start one task
+
+Open your application in the selected assistant:
+
+```text
+Use dotnet-map-system to trace this behavior. Identify the project
+shape, owning feature or library, registration and commit paths,
+nearest test, and missing prerequisites before changing code.
+```
+
+Then choose [one workflow](/workflows/) for the change, or follow the [first-task walkthrough](/guides/first-workflow/).
+
+Workflow menu discovery depends on the assistant and version. Reference its installed `SKILL.md` directly when needed.
+
+## Is there a plugin or dotnet tool?
+
+Not in this release. There is no published NuGet tool, toolkit npm installer, or native Claude marketplace plugin. The Vercel archive is a standard skills distribution, not a host plugin.
+
+A `dotnet tool install` wrapper would require a separate .NET executable, SDK, NuGet package, and release lifecycle without improving the skills format. Use the Vercel command for convenience; use the full installer for host setup. See [packaging boundaries](/integrations/plugins/).
+
+## What neither method does
+
+Neither installation creates a service, runs migrations, starts containers, activates MCP, or authorizes deployment. Your application's manifests determine its .NET SDK and package requirements.
+
+Next: [project shapes](/templates/), [optional roles](/roles/), [MCP examples](/integrations/mcp/), or [troubleshooting](/guides/troubleshooting/).

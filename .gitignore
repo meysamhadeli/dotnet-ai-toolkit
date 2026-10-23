@@ -426,3 +426,11 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Generated Nextra documentation
+website/.next/
+website/out/
+website/content/
+website/routes.json
+website/public/_pagefind/
+website/public/skills.tar.gz

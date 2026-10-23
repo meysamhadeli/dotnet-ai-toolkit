@@ -1,0 +1,45 @@
+# Your first workflow
+
+Start with one behavior in your .NET repository, not a broad rewrite. This walkthrough describes a process; it is not an executed application test.
+
+## 1. Map the path
+
+```text
+Use dotnet-map-system to trace the create-order behavior from its
+entry point through validation, persistence, and its nearest test.
+Show inspected paths and unresolved assumptions. Do not edit yet.
+```
+
+Expect the assistant to identify actual ownership and composition: a library registration API, a module, a monolith feature, an HTTP endpoint, or an independent service. A familiar class name is not proof that a pipeline runs.
+
+## 2. Choose the right guide
+
+For an existing HTTP feature, combine the actual [project shape](/templates/) with [feature slice](/templates/feature-slice/), [validation](/templates/validation/), [minimal endpoint](/templates/minimal-endpoint/), and [testing](/templates/testing/) only where applicable.
+
+Use [architecture](/workflows/dotnet-architecture/) when a boundary decision is unresolved. Use [API](/workflows/dotnet-api/) for HTTP semantics. Use [contracts](/workflows/dotnet-contracts/) when published consumers need compatibility analysis.
+
+## 3. Make a bounded change
+
+```text
+Use dotnet-add-feature-slice to add the requested behavior in the
+existing owning project. Follow its naming and registration patterns.
+Wire validation and persistence only where needed. Add a regression
+test that reaches the changed path.
+```
+
+Do not add a broker, shared abstraction, or new deployment just because a template mentions one. Your target code and the task determine the implementation.
+
+## 4. Check actual behavior
+
+Ask [dotnet-verify](/workflows/dotnet-verify/) to run the smallest meaningful command supported by the application. The handoff should state:
+
+- The exact command and whether it passed, failed, or was blocked.
+- What behavior the check exercised.
+- Missing SDKs, services, credentials, or fixtures.
+- Any remaining integration, delivery, runtime, or deployment checks.
+
+A validator unit test does not prove endpoint dispatch. A successful save does not prove durable event delivery. A static route check does not prove live assistant behavior.
+
+## 5. Review the boundary
+
+Use [dotnet-review](/workflows/dotnet-review/) for implementation regressions, or request the [boundary reviewer](/roles/dotnet-boundary-reviewer/) for advisory analysis. The primary assistant still owns edits, command execution, and approval requests.

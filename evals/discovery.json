@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    { "id": "map", "query": "Map service ownership and registration paths in this .NET repository before changes.", "expectedSkill": "dotnet-map-system", "descriptionTerms": ["ownership", "registration"] },
+    { "id": "architecture", "query": "Compare .NET architecture tradeoffs between a modular monolith and independently deployed microservices before choosing a design.", "expectedSkill": "dotnet-architecture", "descriptionTerms": ["architecture", "tradeoffs"] },
+    { "id": "architecture-library", "query": "Plan ownership and dependency boundaries for reusable .NET class libraries, without creating an HTTP service.", "expectedSkill": "dotnet-architecture", "descriptionTerms": ["ownership", "class libraries"] },
+    { "id": "api", "query": "Configure OpenAPI metadata and ProblemDetails for our existing ASP.NET Core HTTP API.", "expectedSkill": "dotnet-api", "descriptionTerms": ["OpenAPI", "ProblemDetails"] },
+    { "id": "api-controllers", "query": "Change HTTP status and authorization behavior on existing ASP.NET Core controllers without changing business handlers.", "expectedSkill": "dotnet-api", "descriptionTerms": ["controllers", "authorization"] },
+    { "id": "service", "query": "Create a new bounded-context microservice for our .NET reservation system.", "expectedSkill": "dotnet-add-service", "descriptionTerms": ["bounded-context", "microservice"] },
+    { "id": "slice", "query": "Add a command and Minimal API endpoint inside the existing Passenger service.", "expectedSkill": "dotnet-add-feature-slice", "descriptionTerms": ["command", "endpoint"] },
+    { "id": "contracts", "query": "Plan protobuf compatibility and rolling upgrades between two .NET services.", "expectedSkill": "dotnet-contracts", "descriptionTerms": ["protobuf", "rolling upgrades"] },
+    { "id": "messaging", "query": "Fix outbox failures and duplicate effects with Wolverine in this .NET service.", "expectedSkill": "dotnet-messaging", "descriptionTerms": ["outbox", "duplicate effects"] },
+    { "id": "projection", "query": "Repair MongoDB projection checkpoints and define eventual consistency for the .NET read side.", "expectedSkill": "dotnet-projections", "descriptionTerms": ["checkpoints", "eventual consistency"] },
+    { "id": "testing", "query": "Write new .NET persistence coverage using our Testcontainers fixtures.", "expectedSkill": "dotnet-testing", "descriptionTerms": ["coverage", "Testcontainers"] },
+    { "id": "debug", "query": "Diagnose a .NET startup failure under Aspire from the failing resource path.", "expectedSkill": "dotnet-debug", "descriptionTerms": ["startup", "Aspire"] },
+    { "id": "review", "query": "Review these .NET diffs for regressions without changing files.", "expectedSkill": "dotnet-review", "descriptionTerms": ["diffs", "regressions"] },
+    { "id": "verify", "query": "Run verification for the existing .NET change using the relevant CI checks.", "expectedSkill": "dotnet-verify", "descriptionTerms": ["verification", "CI"] },
+    { "id": "docs", "query": "Find version-matched documentation for the Wolverine API used in this project.", "expectedSkill": "dotnet-library-docs", "descriptionTerms": ["documentation", "Wolverine"] },
+    { "id": "security", "query": "Audit JWT validation and personal data exposure in our ASP.NET service.", "expectedSkill": "dotnet-security", "descriptionTerms": ["JWT", "personal data"] },
+    { "id": "negative-copy", "query": "Write marketing copy for a travel agency.", "expectedSkill": null, "outsideScope": true },
+    { "id": "negative-python", "query": "Analyze a CSV in a standalone Python notebook.", "expectedSkill": null, "outsideScope": true },
+    { "id": "negative-react", "query": "Scaffold a React-only portfolio without a .NET backend.", "expectedSkill": null, "outsideScope": true },
+    { "id": "negative-node", "query": "Debug a standalone Node.js process with no .NET components.", "expectedSkill": null, "outsideScope": true }
+  ]
+}

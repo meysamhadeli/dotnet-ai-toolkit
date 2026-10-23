@@ -1,0 +1,51 @@
+# Troubleshooting
+
+Use the exact command, OS, Node.js version, and sanitized output when reporting a problem. Never include credentials or private payloads.
+
+## The target does not exist
+
+The installer needs an existing application directory, separate from the toolkit checkout. Check your working directory and quoted target path. It does not scaffold a new application.
+
+## The Vercel archive returns 404
+
+The archive is published with the documentation deployment. Check that the Pages workflow completed and that the URL includes `/dotnet-ai-toolkit/skills.tar.gz`. Until the first deployment, use the full local installer. A successful local build does not make a public download available.
+
+## Vercel reports an unsupported Node.js version
+
+Its current CLI requires Node.js 22.20 or later. This is stricter than the dependency-free full installer's Node.js 22+ requirement. Upgrade Node for the Vercel method or choose the full local installer.
+
+## A Vercel-installed skill cannot find .ai-toolkit
+
+Use the generated archive, not `npx skills add meysamhadeli/dotnet-ai-toolkit`. Canonical source skills target the full installer's shared bundle; the archive adapts routes and bundles reference material per skill. Review and remove the incorrect CLI-owned installation before switching methods.
+
+## Existing instructions block full installation
+
+This is intentional. The installer refuses different destination files and provides no overwrite switch. Review [manual adoption and updates](/guides/adoption/), compare the selected host guidance, and merge deliberately. Do not delete your instructions to bypass the check.
+
+## A symlink or directory collision blocks installation
+
+Inspect the destination and choose a reviewed, direct target path. Do not disable symlink checks. Installation preflight is not a sandbox against another process concurrently modifying the target.
+
+## A workflow is missing from the assistant menu
+
+Check which installation method owns the skill. Vercel's destinations differ from the full installer's [host table](/guides/adoption/). Reference the installed `SKILL.md` directly. Client discovery and menu support vary by version; static toolkit tests do not certify live loading.
+
+## Codex and OpenCode both need AGENTS.md
+
+Both hosts use the same root destination. Their shared canonical bundle can coexist when identical, but different entry instructions must be manually merged.
+
+## A specialist cannot run a test or edit files
+
+That is the intended role boundary. Copilot and Claude roles receive read/search-only tools. Other hosts receive advisory documents without native permission enforcement. Pass proposed checks back to the primary assistant.
+
+## Search is unavailable in local website development
+
+Pagefind needs exported HTML. Run `npm run docs:build` from the repository root and serve the static export under its configured base path. The dev server alone does not create the search index.
+
+## GitHub Pages returns 404 or lacks styling
+
+Check the deployment workflow result, Pages source setting, and `/dotnet-ai-toolkit/` base path. Reload a nested route directly. For a custom domain at `/`, build with an empty `NEXT_PUBLIC_BASE_PATH`. Follow [website maintenance](/guides/website/) rather than editing exported files.
+
+## What to include in an issue
+
+Include the minimal reproduction, expected versus actual behavior, toolkit revision, selected assistant/client version, and exact validation results. Separate an installer failure from an application runtime failure.

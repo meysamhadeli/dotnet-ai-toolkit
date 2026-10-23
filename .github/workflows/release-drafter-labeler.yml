@@ -1,0 +1,27 @@
+name: Label pull requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-labels-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  label:
+    if: github.event.pull_request.base.ref == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Apply labels from trusted base-branch configuration
+        uses: release-drafter/release-drafter/autolabeler@v7.10.0
+        with:
+          config-name: release-drafter.yml
+          token: ${{ secrets.GITHUB_TOKEN }}

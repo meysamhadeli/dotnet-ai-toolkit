@@ -1,0 +1,26 @@
+{
+  "name": "dotnet-ai-toolkit-docs",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "content": "node scripts/content.mjs && node ../scripts/package-skills.mjs",
+    "dev": "npm run content && next dev",
+    "build": "npm run content && next build",
+    "postbuild": "pagefind --site out --output-path out/_pagefind",
+    "check": "node scripts/check-export.mjs"
+  },
+  "dependencies": {
+    "dotnet-ai-toolkit": "file:..",
+    "next": "15.5.28",
+    "nextra": "4.6.0",
+    "nextra-theme-docs": "4.6.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.2"
+  }
+}

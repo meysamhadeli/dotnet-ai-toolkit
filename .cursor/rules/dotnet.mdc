@@ -1,0 +1,15 @@
+---
+description: "Develop .NET projects using canonical knowledge, project-type templates, and independent concepts."
+globs: "**/*.cs,**/*.csproj"
+alwaysApply: false
+---
+
+# .NET AI Toolkit
+
+In an installed application, start at `.ai-toolkit/templates/README.md`, select the matching project type and concepts, and read `.ai-toolkit/knowledge/architecture.md` for ownership. Existing code and specific repository instructions override template defaults.
+
+Use `.cursor/skills/` workflows; canonical specialist role documents are in `.ai-toolkit/agents/`. No native Cursor agent registration or read-only tool enforcement is claimed.
+
+Preserve actual library, module, application, or service boundaries and test placement. Use feature-local `V1` conventions where established. Trace dispatch, validation, and commit ownership; keep MediatR/Griffin/Wolverine only where needed. Make a focused change and run its nearest check.
+
+Protect secrets and personal data. Ask before infrastructure startup, submodule changes, migrations, persistent replay, or deployment. In the toolkit checkout without `.ai-toolkit/`, follow root `AGENTS.md` instead of consumer structure.

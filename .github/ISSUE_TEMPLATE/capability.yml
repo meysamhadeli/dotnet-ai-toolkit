@@ -1,0 +1,17 @@
+name: .NET capability request
+description: Propose a focused capability for .NET application development.
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: .NET task and current gap
+      description: Explain the concrete development task and why existing workflows do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and verification
+      description: Describe scope, approval boundaries, and a focused check.
+    validations:
+      required: true

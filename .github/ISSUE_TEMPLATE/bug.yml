@@ -1,0 +1,17 @@
+name: Bug report
+description: Report a toolkit workflow, installation, or validation defect.
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include command or workflow, expected behavior, and actual result. Remove secrets and personal data.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node.js version, assistant/client version, and toolkit version.
+    validations:
+      required: true

@@ -1,0 +1,97 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+change-template: '- $TITLE (#$NUMBER)'
+change-title-escapes: '\<*_&@#`'
+
+categories:
+  - type: pre-exclude
+    when:
+      label: skip-changelog
+  - type: version-resolver
+    semver-increment: major
+    when:
+      - label: major
+      - conventional:
+          breaking: true
+  - type: version-resolver
+    semver-increment: minor
+    when:
+      - labels: [minor, feature, enhancement]
+      - conventional:
+          type: feat
+  - type: version-resolver
+    semver-increment: patch
+  - title: Security
+    exclusive: true
+    when:
+      - label: security
+      - conventional:
+          type: security
+  - title: Capabilities and improvements
+    exclusive: true
+    when:
+      - labels: [feature, enhancement]
+      - conventional:
+          type: feat
+  - title: Fixes
+    exclusive: true
+    when:
+      - labels: [bug, fix]
+      - conventional:
+          type: fix
+  - title: Documentation
+    exclusive: true
+    when:
+      - labels: [documentation, docs]
+      - conventional:
+          type: docs
+  - title: Dependencies
+    exclusive: true
+    when:
+      - labels: [dependencies, deps]
+      - conventional:
+          type: deps
+  - title: Validation and automation
+    exclusive: true
+    when:
+      - labels: [ci, test]
+      - conventional:
+          types: [ci, test, build]
+  - title: Maintenance and other changes
+    exclusive: true
+
+autolabeler:
+  - labels: [feature]
+    title:
+      - '/^feat(\([^)]*\))?!?:/'
+  - labels: [bug]
+    title:
+      - '/^fix(\([^)]*\))?!?:/'
+  - labels: [documentation]
+    title:
+      - '/^docs(\([^)]*\))?!?:/'
+  - labels: [dependencies]
+    title:
+      - '/^deps(\([^)]*\))?!?:/'
+      - '/^build\(deps(?:-dev)?\):/'
+  - labels: [ci]
+    title:
+      - '/^(ci|build)(\([^)]*\))?!?:/'
+  - labels: [test]
+    title:
+      - '/^test(\([^)]*\))?!?:/'
+  - labels: [security]
+    title:
+      - '/^security(\([^)]*\))?!?:/'
+  - labels: [maintenance]
+    title:
+      - '/^(chore|refactor|perf)(\([^)]*\))?!?:/'
+
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Before Publishing
+
+  Review the version, repository changelog, compatibility notes, and required CI results. This draft does not publish a package or validate a consumer .NET application.

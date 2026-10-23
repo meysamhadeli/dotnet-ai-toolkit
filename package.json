@@ -1,0 +1,17 @@
+{
+  "name": "dotnet-ai-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Assistant-neutral workflows for vertical-slice .NET distributed systems",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run validate && npm test",
+    "docs:dev": "npm --prefix website run dev",
+    "docs:build": "npm --prefix website run build",
+    "docs:check": "node website/scripts/check-export.mjs",
+    "skills:pack": "node scripts/package-skills.mjs"
+  }
+}
